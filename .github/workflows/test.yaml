@@ -6,7 +6,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: list files
-              run: la
+              run: ls -a
             - name: present directory
               run: pwd
             - name: list users
