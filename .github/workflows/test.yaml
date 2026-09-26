@@ -14,4 +14,14 @@ jobs:
             - name: sudo root
               run: sudo -i
 
+    create-and-run-file:
+        runs-on: ubuntu-latest
+        steps:
+            - name: create file
+              run: echo 'console.log("Hello World!");' > app.js
+            - name: node -v
+              run: node -v
+            - name: run file content
+              run: node app.js
+
             
