@@ -1,0 +1,17 @@
+name: test-workflow
+on: push
+
+jobs:
+    testing-jobs:
+        runs-on: ubuntu-latest
+        steps:
+            - name: list files
+              run: la
+            - name: present directory
+              run: pwd
+            - name: list users
+              run: ls /home
+            - name: sudo root
+              run: sudo -i
+
+            
