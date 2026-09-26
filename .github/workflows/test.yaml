@@ -26,16 +26,11 @@ jobs:
 
     print-sys-info:
         runs-on: ubuntu-latest
+        needs: create-and-run-file
         steps:
-            - name: print system info
+            - name: list files
               run: |
-                echo "Operating System Information:"
-                uname -a
-                echo "CPU Information:"
-                lscpu
-                echo "Memory Information:"
-                free -h
-                echo "Disk Usage:"
-                df -h
+                echo "Listing files:"
+                ls -a
 
             
