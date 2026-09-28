@@ -1,0 +1,13 @@
+name: run-cmds-without-name
+on: [push, workflow_dispatch]
+
+jobs:
+    run-cmds-without-name:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Hello World!"
+            - run: ls -a
+            - run: pwd
+
+
+            
