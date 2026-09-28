@@ -1,0 +1,16 @@
+name: test-actions-workflow
+on: [push, workflow_dispatch]
+
+jobs:
+    testing-actions-jobs:
+        runs-on: ubuntu-latest
+        steps:
+            - name: list files
+              run: ls -a
+            - name: clone repo
+              uses: actions/checkout@v6
+            - name: list after clone
+              run: ls -a
+
+
+            
