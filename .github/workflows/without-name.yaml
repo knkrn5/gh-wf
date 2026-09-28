@@ -5,9 +5,10 @@ jobs:
     run-cmds-without-name:
         runs-on: ubuntu-latest
         steps:
-            - run: echo "Hello World!"
-            - run: ls -a
-            - run: pwd
+            - run: echo "${{ toJSON(env) }}"
+            - run: echo "${{ toJSON(vars) }}"
+            - run: echo "${{ toJSON(secrets) }}"
+            - run: echo "${{ toJSON(runner) }}"
 
 
             
