@@ -7,7 +7,9 @@ jobs:
     steps:
       - run: echo ${{github.token}}
       - run: echo ${{secrets.GITHUB_TOKEN}}
-      - run: echo ${{github.token == secrets.GITHUB_TOKEN}}
+      - run: echo ${{secrets.AWS_SECRET}}
+      - name: my custom var
+        run : echo ${{vars.MY_VAR}}
   
 
 
