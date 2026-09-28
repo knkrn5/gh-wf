@@ -1,5 +1,5 @@
 name: run-cmds-without-name
-on: [push, workflow_dispatch]
+on: [ workflow_dispatch]
 
 env:
     ENV_VAR1: "value1"

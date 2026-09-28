@@ -1,0 +1,14 @@
+name: env-secret-actions
+on: [push, workflow_dispatch]
+
+jobs:
+  my-first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{github.token}}
+      - run: echo ${{secrets.GITHUB_TOKEN}}
+      - run: echo ${{github.token == secrets.GITHUB_TOKEN}}
+  
+
+
+            
