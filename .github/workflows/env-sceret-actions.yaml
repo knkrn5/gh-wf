@@ -13,6 +13,12 @@ jobs:
       - name: my custom var
         run : echo ${{vars.SERVER_URL}}
 
+  my-aws-cf-job:
+    if: ${{ github.ref_name == 'master' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "push to aws coudfront"
+
   
 
 

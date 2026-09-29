@@ -9,4 +9,5 @@
 > Setup environment, 
 1. env variables can be passed globally, or specific to per job or specific to per step
 2. Github acitons provides some `pre-defined context/data` , `builtin funcitons/method` for perfrom some operations
-3. 
+3. can set if condition
+4. 
