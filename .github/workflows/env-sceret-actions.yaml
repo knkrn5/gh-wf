@@ -1,9 +1,11 @@
 name: env-secret-actions
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [main, master, dev]
 
 jobs:
   my-env-job:
-    environment: ${{ github.ref_name }}
+    environment: ${{ github.ref_name == 'master' && 'PROD' || 'TEST' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.ref_name }}
