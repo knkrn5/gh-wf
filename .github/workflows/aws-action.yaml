@@ -1,0 +1,10 @@
+name: aws-installation
+on:
+  push:
+    branches: [main, master, dev]
+
+jobs:
+  aws-cli-installation:
+    runs-on: ubuntu-latest
+    steps:
+      - run: aws --v
