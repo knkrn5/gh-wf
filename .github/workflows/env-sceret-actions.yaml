@@ -2,14 +2,20 @@ name: env-secret-actions
 on: [push, workflow_dispatch]
 
 jobs:
-  my-first-job:
+  my-test-env-job:
+    environment: TEST
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{github.token}}
-      - run: echo ${{secrets.GITHUB_TOKEN}}
       - run: echo ${{secrets.AWS_SECRET}}
       - name: my custom var
-        run : echo ${{vars.MY_VAR}}
+        run : echo ${{vars.SERVER_URL}}
+  my-prod-env-job:
+    environment: PROD
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{secrets.AWS_SECRET}}
+      - name: my custom var
+        run : echo ${{vars.SERVER_URL}}
   
 
 
