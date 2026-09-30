@@ -16,4 +16,4 @@ A new shell starts.
 
 Its current directory goes back to the default:
 ```
-5. 
+5. trigger workflow on any events, plus we can add the explicitly trigger option

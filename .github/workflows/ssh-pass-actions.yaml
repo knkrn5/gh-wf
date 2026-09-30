@@ -1,0 +1,24 @@
+name: sshpass-actions
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for sshpass binary file
+        run: |
+          if ! command -v sshpass &> /dev/null; then
+            echo "sshpass could not be found, installing..."
+            sudo apt-get update
+            sudo apt-get install -y sshpass
+          else
+            echo "sshpass is already installed."
+          fi
+
+  
