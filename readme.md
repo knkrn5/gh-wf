@@ -10,4 +10,10 @@
 1. env variables can be passed globally, or specific to per job or specific to per step
 2. Github acitons provides some `pre-defined context/data` , `builtin funcitons/method` for perfrom some operations
 3. can set if condition
-4. 
+4. each run: step gets its own shell.
+```txt
+A new shell starts.
+
+Its current directory goes back to the default:
+```
+5. 
