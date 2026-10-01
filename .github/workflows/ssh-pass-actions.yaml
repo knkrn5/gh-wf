@@ -23,7 +23,13 @@ jobs:
             sshpass -V
           fi
 
-      - run: echo 'console.log("Hello World! 5:59");' > index.js
+      - name: Create index.js
+        run: echo 'console.log("Hello World! 5:59");' > index.js
+
+      - name: Add server to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H pcvm.printcampus.in >> ~/.ssh/known_hosts
 
       - name: Copy file to server
         env:
