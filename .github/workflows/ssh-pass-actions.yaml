@@ -37,6 +37,6 @@ jobs:
         run: |
           sshpass -e scp \
             ./index.js \
-            admin@pcvm.printcampus.in:/home/admin/index.js
+            ${{ secrets.SSH_USER }}@${{ secrets.PCVM_SSH_HOST }}:${{ secrets.SSH_VM_HOME_PATH }}/index.js
 
   
