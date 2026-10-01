@@ -31,7 +31,7 @@ jobs:
         run: |
           sshpass -e scp \
             -o StrictHostKeyChecking=no \
-            ./server/dist/index.js \
+            ./index.js \
             admin@pcvm.printcampus.in:/home/admin/index.js
 
   
