@@ -23,6 +23,8 @@ jobs:
             sshpass -V
           fi
 
+      - run: echo 'console.log("Hello World!");' > index.js
+
       - name: Copy file to server
         env:
           SSHPASS: ${{ secrets.PCVM_SSH_PASSWORD }}
