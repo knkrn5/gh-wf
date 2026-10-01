@@ -5,8 +5,10 @@ on:
     branches: ['master', 'main']
   workflow_dispatch:
 
+
 jobs:
-  deploy:
+  deploy-to-server:
+    environment: PROD
     runs-on: ubuntu-latest
 
     steps:
@@ -20,5 +22,14 @@ jobs:
             echo "sshpass is already installed."
             sshpass -V
           fi
+
+      - name: Copy file to server
+        env:
+          SSHPASS: ${{ secrets.PCVM_SSH_PASSWORD }}
+        run: |
+          sshpass -e scp \
+            -o StrictHostKeyChecking=no \
+            ./server/dist/index.js \
+            admin@pcvm.printcampus.in:/home/admin/index.js
 
   
