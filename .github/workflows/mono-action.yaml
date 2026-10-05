@@ -4,27 +4,37 @@ on:
     branches: ['master', 'test']
 
 jobs:
-  my-env-job:
-    # environment: ${{ github.ref_name == 'master' && 'PROD' || 'TEST' }}
+  detect-changed-files:
     runs-on: ubuntu-latest
-    steps:
-      - run: echo ${{ github.ref_name }}
-      - run: echo ${{secrets.AWS_SECRET}}
-
-  my-aws-cf-job:
-    if: ${{ github.ref_name == 'master' }}
-    runs-on: ubuntu-latest
+    outputs:
+      client_changed: ${{ steps.changes.outputs.client_changed }}
     steps:
       - name: checkout code
         uses: actions/checkout@v7  
         with:
             fetch-depth: 0
-      - run: |
-            pwd
-            ls -a
-      - run: echo "push to aws coudfront"
-      - name: Show changed files
-        run: git diff --name-only ${{ github.event.before }} ${{ github.sha }}
+      - name: Detect changes
+        id: changes
+        run: |
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+  
+          echo "$CHANGED_FILES"
+  
+          if echo "$CHANGED_FILES" | grep -q '^clients/'; then
+              echo "client_changed=true" >> "$GITHUB_OUTPUT"
+          else
+              echo "client_changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy-client:
+    needs: detect-changed-files
+    if: ${{ github.ref_name == 'master' && needs.detect-changed-files.outputs.client_changed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v7
+
+
 
   
 

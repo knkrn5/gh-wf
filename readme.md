@@ -17,3 +17,7 @@ A new shell starts.
 Its current directory goes back to the default:
 ```
 5. trigger workflow on any events, plus we can add the explicitly trigger option
+
+## outputs: - 
+1. $GITHUB_OUTPUT is an environment variable GitHub sets for every step. It holds the path to a temporary file. When the step finishes, GitHub reads that file and turns each name=value line into a step output.
+2. 
