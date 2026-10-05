@@ -1,23 +1,23 @@
-name: env-secret-actions
+name: monorepo-actions
 on:
   push:
-    branches: ['test']
+    branches: ['master', 'test']
 
 jobs:
   my-env-job:
-    environment: ${{ github.ref_name == 'master' && 'PROD' || 'TEST' }}
+    # environment: ${{ github.ref_name == 'master' && 'PROD' || 'TEST' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.ref_name }}
       - run: echo ${{secrets.AWS_SECRET}}
-      - name: my custom var
-        run : echo ${{vars.SERVER_URL}}
 
   my-aws-cf-job:
     if: ${{ github.ref_name == 'master' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "push to aws coudfront"
+      - name: Show changed files
+        run: "git diff --name-only HEAD^ HEAD"
 
   
 
