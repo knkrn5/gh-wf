@@ -18,13 +18,13 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v7  
         with:
-            fetch-depth: 2
+            fetch-depth: 0
       - run: |
             pwd
             ls -a
       - run: echo "push to aws coudfront"
       - name: Show changed files
-        run: "git diff --name-only HEAD^ HEAD"
+        run: git diff --name-only ${{ github.event.before }} ${{ github.sha }}
 
   
 
