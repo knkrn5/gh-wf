@@ -1,0 +1,19 @@
+name: deploy-backend
+on:
+  push:
+    branches: ['master', 'dev']
+  workflow_dispatch:
+
+jobs:
+  get-changed-files:
+    uses: ./.github/workflows/detect-changes.yml
+
+  deploy-client:
+    needs: get-changed-files
+    if: ${{ github.ref_name == 'master' && needs.get-changed-files.outputs.server == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v7
+      - name: deploy server
+        run: echo "Deploying server because changes were detected in the server dir."

@@ -1,7 +1,7 @@
-name: monorepo-actions-two
+name: deploy-client
 on:
   push:
-    branches: ['master']
+    branches: ['master', 'dev']
   workflow_dispatch:
 
 jobs:
