@@ -20,4 +20,6 @@ Its current directory goes back to the default:
 
 ## outputs: - 
 1. $GITHUB_OUTPUT is an environment variable GitHub sets for every step. It holds the path to a temporary file. When the step finishes, GitHub reads that file and turns each name=value line into a step output.
-2. 
+2. You only declare runs-on again when you add another job, because each job gets its own fresh machine:
+3. resubale workflow
+4. concurrency controls whether multiple runs of a workflow (or job) can run at the same time.

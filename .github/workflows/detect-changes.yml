@@ -1,0 +1,29 @@
+name: Detect Changes
+
+on:
+  workflow_call:
+    outputs:
+      client:
+        value: ${{ jobs.detect.outputs.client }}
+      server:
+        value: ${{ jobs.detect.outputs.server }}
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+
+    outputs:
+      client: ${{ steps.filter.outputs.client }}
+      server: ${{ steps.filter.outputs.server }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v4
+        id: filter
+        with:
+          filters: |
+            client:
+              - 'clients/**'
+            server:
+              - 'server/**'
