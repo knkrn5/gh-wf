@@ -1,7 +1,7 @@
 const http = require('node:http');
 
 // Define the port the server will listen on
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Create the HTTP server
 const server = http.createServer((req, res) => {
