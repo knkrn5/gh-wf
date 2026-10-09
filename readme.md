@@ -23,3 +23,6 @@ Its current directory goes back to the default:
 2. You only declare runs-on again when you add another job, because each job gets its own fresh machine:
 3. resubale workflow
 4. concurrency controls whether multiple runs of a workflow (or job) can run at the same time.
+
+=================================================
+so ci-cd pipelline are nothing, just a way of automatically running the terminal cmds
