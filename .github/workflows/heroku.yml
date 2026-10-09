@@ -2,12 +2,14 @@ name: Deploy to Heroku
 
 on:
   push:
-    branches:
-      - main
+    branches: ["master", "main"]
   workflow_dispatch:
 
 jobs:
-  deploy:
+  get-changed-files:
+    uses: ./.github/workflows/detect-changes.yml
+
+  deploy-backend-staging:
     runs-on: ubuntu-latest
 
     env:
