@@ -1,6 +1,6 @@
 {
   "name": "gh-wf",
   "scripts": {
-    "start": "node server/app.cjs"
+    "start": "node app.cjs"
   }
 }
