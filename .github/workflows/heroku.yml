@@ -31,6 +31,7 @@ jobs:
         run: |
           heroku git:remote -a aidebate-stag
 
-      - name: Deploy
+      - name: Deploy to heroku
         run: |
-          git push heroku HEAD:main
+          git subtree split --prefix=server -b heroku-deploy
+          git push heroku heroku-deploy:main --force
