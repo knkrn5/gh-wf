@@ -1,6 +1,11 @@
 {
   "name": "gh-wf",
   "scripts": {
-    "start": "node app.cjs"
+    "start": "node dist/app.cjs",
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5"
   }
 }
