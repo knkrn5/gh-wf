@@ -3,7 +3,8 @@
   "scripts": {
     "start": "node dist/app.cjs",
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^26.6.5"

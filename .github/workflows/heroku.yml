@@ -47,3 +47,4 @@ jobs:
           heroku_app_name: "aidebate-stag"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           appdir: "server"
+          procfile: "web: npm start"
