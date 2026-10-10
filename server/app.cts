@@ -1,10 +1,11 @@
-const http = require('node:http');
+import http from 'node:http';
+import type { IncomingMessage, ServerResponse } from 'node:http';
 
 // Define the port the server will listen on
 const PORT = process.env.PORT || 3000;
 
 // Create the HTTP server
-const server = http.createServer((req, res) => {
+const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
   // Set the response HTTP header with HTTP status and Content-Type
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   
