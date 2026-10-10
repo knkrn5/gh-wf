@@ -10,11 +10,12 @@ jobs:
     uses: ./.github/workflows/detect-changes.yml
 
   deploy-backend-staging:
+    needs: get-changed-files
     if: ${{ github.ref_name == 'master' && needs.get-changed-files.outputs.server == 'true' }}
     runs-on: ubuntu-latest
 
-    env:
-      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+    # env:
+    #   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
     steps:
       - name: Checkout
@@ -26,16 +27,23 @@ jobs:
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
 
-      - name: Authenticate with Heroku
-        run: |
-          heroku auth:whoami
+      # - name: Authenticate with Heroku
+      #   run: |
+      #     heroku auth:whoami
 
-      - name: Add Heroku remote
-        run: |
-          heroku git:remote -a aidebate-stag
+      # - name: Add Heroku remote
+      #   run: |
+      #     heroku git:remote -a aidebate-stag
 
-      - name: Deploy to heroku
-        # run: |
-          # git subtree split --prefix=server -b heroku-deploy
-          # git push heroku heroku-deploy:main --force
-        run: git push heroku "$(git subtree split --prefix=server)":refs/heads/main --force
+      # - name: Deploy to heroku
+      #   # run: |
+      #     # git subtree split --prefix=server -b heroku-deploy
+      #     # git push heroku heroku-deploy:main --force
+      #   run: git push heroku "$(git subtree split --prefix=server)":refs/heads/main --force
+
+      - uses: akhileshns/heroku-deploy@v3.15.15
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "aidebate-stag"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          appdir: "server"
