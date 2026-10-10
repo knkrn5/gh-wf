@@ -10,6 +10,7 @@ jobs:
     uses: ./.github/workflows/detect-changes.yml
 
   deploy-backend-staging:
+    if: ${{ github.ref_name == 'master' && needs.get-changed-files.outputs.server == 'true' }}
     runs-on: ubuntu-latest
 
     env:
@@ -34,6 +35,7 @@ jobs:
           heroku git:remote -a aidebate-stag
 
       - name: Deploy to heroku
-        run: |
-          git subtree split --prefix=server -b heroku-deploy
-          git push heroku heroku-deploy:main --force
+        # run: |
+          # git subtree split --prefix=server -b heroku-deploy
+          # git push heroku heroku-deploy:main --force
+        run: git push heroku "$(git subtree split --prefix=server)":refs/heads/main --force
